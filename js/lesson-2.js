@@ -11,20 +11,29 @@
 // Використайте цикл for для перебору елементів масиву.
 // Нумерація елементів повинна починатися з 1 (а не з 0).
 
-let styles = ["jazz", "blues"];
-// console.log(styles);
-const style = styles.push("rock-n-roll");
-styles[1] = "classic";
-// console.log(styles);
+// let styles = ["jazz", "blues"];
+// // console.log(styles);
+// //const style = styles.push("rock-n-roll");
+// styles.push("rock-n-roll");
+// // styles[1] = "classic";
 
-function logItems(array) {
-  for (const style of array) {
-    // console.log(array);
-  }
-  return `${style} - ${styles}`;
-}
+// const index = styles.indexOf("blues");
+// if (index === -1) {
+//   console.log("Element not found");
+// } else {
+//   styles[index] = "classic";
+// }
+// // console.log(styles);
 
-console.log(logItems(styles));
+// function logItems(array) {
+//   for (let i = 0; i < array.length; i++) {
+//     console.log(`${i + 1} - ${array[i]}`);
+//   }
+//   // for (const style of array) {
+//   //   console.log(style);
+//   // }
+// }
+// logItems(styles);
 //
 //task-2
 //
@@ -36,7 +45,17 @@ console.log(logItems(styles));
 // Якщо ім'я відсутнє – виводить повідомлення: "User not found".
 
 // const logins = ["Peter", "John", "Igor", "Sasha"];
-
+// const loginName = prompt("Enter your name");
+// function checkLogin(logins) {
+//   for (const login of logins) {
+//     if (login === loginName) {
+//       return alert(`Welcome, ${login}!`);
+//     }
+//   }
+//   return alert("User not found");
+// }
+// checkLogin(logins);
+//
 //
 //task-3
 //
@@ -44,22 +63,23 @@ console.log(logItems(styles));
 // яка приймає довільну кількість
 // аргументів і повертає їхнє середнє значення.
 // Додайте перевірку, що аргументи - це числа.
-// function caclculateAverage() {
-//   let totalSum = 0;
-//   let count = 1;
-//   for (const number of arguments) {
-//     if (typeof number !== "number") {
-//       continue;
-//     }
-//     totalSum += number;
-//     count += 1;
-//   }
-//   return totalSum / count;
-// }
-// console.log(caclculateAverage(12, 20, 20));
-// console.log(caclculateAverage(12, 20, 20, 50, 58, 52));
+function caclculateAverage(...args) {
+  let totalSum = 0;
+  let count = 1;
+  for (const number of args) {
+    if (typeof number !== "number") {
+      continue;
+    }
+    totalSum += number;
+    count += 1;
+  }
+  return totalSum / count;
+}
+console.log(caclculateAverage(12, 20, 20));
+console.log(caclculateAverage(10, 20, 30, 50, 58, 52));
 //
-//4
+//task-4
+//
 // Напишіть функцію, яка сумуватиме сусідні числа
 // і пушитиме їх в новий масив.
 
