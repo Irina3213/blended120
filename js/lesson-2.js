@@ -63,20 +63,23 @@
 // яка приймає довільну кількість
 // аргументів і повертає їхнє середнє значення.
 // Додайте перевірку, що аргументи - це числа.
-function caclculateAverage(...args) {
-  let totalSum = 0;
-  let count = 1;
-  for (const number of args) {
-    if (typeof number !== "number") {
-      continue;
-    }
-    totalSum += number;
-    count += 1;
-  }
-  return totalSum / count;
-}
-console.log(caclculateAverage(12, 20, 20));
-console.log(caclculateAverage(10, 20, 30, 50, 58, 52));
+// function caclculateAverage(...args) {
+//   let totalSum = 0;
+//   let count = 1;
+//   for (const number of args) {
+//     if (typeof number !== "number") {
+//       continue;
+//     }
+//     totalSum += number;
+//     count += 1;
+//   }
+//   if(count === 0){
+//     return 0;
+//   }
+//   return totalSum / count;
+// }
+// console.log(caclculateAverage(12, 20, 20));
+// console.log(caclculateAverage(10, 20, 30, 50, 58, 52));
 //
 //task-4
 //
@@ -121,12 +124,26 @@ console.log(caclculateAverage(10, 20, 30, 50, 58, 52));
 // '<ключ>:<значення>' використовуя Object.keys() та for...of
 
 // const user = {
-//     name: "John",
-//     age: 20,
-//     hobby: "tenis",
-//     premium: true,
-//   };
-
+//   name: "John",
+//   age: 20,
+//   hobby: "tenis",
+//   premium: true,
+// };
+// user.mood = "happy";
+// //user['mood'] = 'happy'; //moje rozwiriti mpglivist' - korisno pri roboti z formoyu , pri roboti z klassom
+// const key = "mood";
+// user[key] = "happy"; //vikoristovyetsa nauchastiwe, bo mi mogemo ne znati deyaki dani
+// user.hobby = "skydiving";
+// user.premium = false;
+// const userKeys = Object.keys(user);
+// for (const key of userKeys) {
+//   console.log(`${key} : ${user[key]}`);
+// }
+// //_____________
+// const userArr = Object.entries(user);
+// for (const arr of userArr) {
+//   console.log(`${arr[0]} : ${arr[1]}`);
+// }
 //
 //task-8
 //
@@ -135,11 +152,18 @@ console.log(caclculateAverage(10, 20, 30, 50, 58, 52));
 // збережіть його результат в змінній sum.
 // Якщо об'єкт salaries пустий, то результат має бути 0
 
-// const salaries = {
-//     Mango: 100,
-//     Poly: 160,
-//     Ajax: 1470,
-//   };
+const salaries = {
+  Mango: 100,
+  Poly: 160,
+  Ajax: 1470,
+};
+
+let sum = 0;
+const salariesValue = Object.values(salaries);
+for (const value of salariesValue) {
+  sum += value;
+}
+console.log(sum);
 
 //
 //task-9
@@ -152,6 +176,34 @@ console.log(caclculateAverage(10, 20, 30, 50, 58, 52));
 
 // Якщо вказані властивості в обʼєкті відсутні (тобто метод exist повертає false),
 // методи sum і mult мають повертати рядок 'No such propeties'
+const calculator = {
+  read(a, b) {
+    this.a = a;
+    this.b = b;
+  },
+
+  exist() {
+    return this.a !== undefined && this.b !== undefined;
+  },
+
+  sum() {
+    if (!this.exist()) return "No such propetie";
+
+    return this.a + this.b;
+  },
+
+  mult() {
+    if (!this.exist()) return "No such propetie";
+
+    return this.a * this.b;
+  },
+};
+
+calculator.read(8, 4);
+console.log(calculator);
+
+console.log(calculator.sum());
+console.log(calculator.mult());
 
 //
 //task-10
@@ -164,11 +216,24 @@ console.log(caclculateAverage(10, 20, 30, 50, 58, 52));
 // Зверніть увагу, що в масиві може бути кілька обʼєктів з однаковою
 // назвою фрукта, це також треба урахувати.
 
-// const fruits = [
-//     { name: "Яблуко", price: 45, quantity: 7 },
-//     { name: "Апельсин", price: 60, quantity: 4 },
-//     { name: "Банан", price: 125, quantity: 8 },
-//     { name: "Груша", price: 350, quantity: 2 },
-//     { name: "Виноград", price: 440, quantity: 3 },
-//     { name: "Банан", price: 125, quantity: 3 },
-//   ];
+const fruits = [
+  { name: "Яблуко", price: 45, quantity: 7 },
+  { name: "Апельсин", price: 60, quantity: 4 },
+  { name: "Банан", price: 125, quantity: 8 },
+  { name: "Груша", price: 350, quantity: 2 },
+  { name: "Виноград", price: 440, quantity: 3 },
+  { name: "Банан", price: 125, quantity: 3 },
+];
+function calcTotalPrice(fruits, fruitName) {
+  let res = 0;
+  for (const fruit of fruits) {
+    if (fruitName === fruit.name) {
+      res += fruit.price * fruit.quantity;
+    }
+  }
+  return `${fruitName} : ${res}`;
+}
+
+console.log(calcTotalPrice(fruits, "Банан"));
+console.log(calcTotalPrice(fruits, "Гриб"));
+console.log(calcTotalPrice(fruits, "Груша"));
